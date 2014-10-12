@@ -15,8 +15,10 @@
 #include <GL/glew.h> /* include GLEW and new version of GL on Windows */
 #include <GLFW/glfw3.h> /* GLFW helper library */
 #include <stdio.h>
+#include <iostream>
 
 int main () {
+	std::cout<<"started main OpenGL2.1 test"<<std::endl;
 	GLFWwindow* window = NULL;
 	const GLubyte* renderer;
 	const GLubyte* version;
@@ -56,17 +58,36 @@ int main () {
 		return 1;
 	} 
 
+	std::cout<<"before glfwWindowHint()"<<std::endl;
 	glfwWindowHint (GLFW_CONTEXT_VERSION_MAJOR, 2);
-	glfwWindowHint (GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint (GLFW_CONTEXT_VERSION_MINOR, 1);	
+	std::cout<<"after glfwWindowHint()"<<std::endl;
 
+    
+    glfwWindowHint(GLFW_RED_BITS, 8);
+    glfwWindowHint(GLFW_GREEN_BITS, 8);
+    glfwWindowHint(GLFW_BLUE_BITS, 8);
+    glfwWindowHint(GLFW_ALPHA_BITS, 8);
+    glfwWindowHint(GLFW_DEPTH_BITS, 24);
+    glfwWindowHint(GLFW_STENCIL_BITS, 8);
+    
+	std::cout<<"before glfwCreateWindow"<<std::endl;
+		
 	window = glfwCreateWindow (
-		640, 480, "Hello Triangle", NULL, NULL
+		300, 300, "Hello Triangle", NULL, NULL
 	);
+	
+//fulls screen with glfwGetPrimaryMonitor()
+/*window = glfwCreateWindow (
+		640, 480, "Hello Triangle", glfwGetPrimaryMonitor(), NULL
+	);*/
 	if (!window) {
 		fprintf (stderr, "ERROR: could not open window with GLFW3\n");
 		glfwTerminate();
 		return 1;
 	}
+std::cout<<"after glfwCreateWindow()"<<std::endl;
+
 	glfwMakeContextCurrent (window);
 	// start GLEW extension handler
 	glewExperimental = GL_TRUE;
