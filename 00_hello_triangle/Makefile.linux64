@@ -1,9 +1,17 @@
 BIN = hellot
+<<<<<<< HEAD
 CC = g++
 FLAGS = -Wall -pedantic
 INC = -I ../common/include
 LOC_LIB = ../common/linux_x86_64/libGLEW.a ../common/linux_x86_64/libglfw3.a
 SYS_LIB = -lGL -lX11 -lXxf86vm -lXrandr -lpthread -lXi -lm -lrt
+=======
+CC = gcc
+FLAGS = -Wall -pedantic -std=c99
+INC = -I ../common/include
+LOC_LIB = ../common/linux_x86_64/libGLEW.a -lglfw
+SYS_LIB = -lGL -lm
+>>>>>>> 228e22f5abe42c406027874e0ba3fb9a2423096d
 SRC = main.c
 
 all:
